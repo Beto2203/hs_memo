@@ -1,0 +1,80 @@
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-image: url("/media/homepage.jpg");
+  background-size: cover;
+}
+
+.hide {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  color: wheat;
+}
+
+#displayNumOfCards {
+  color: white;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 10% 90% 10%;
+  width: 90vw;
+  height: 90vh;
+}
+
+#cards {
+  width: 55%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+@media screen and (max-width: 1100px){
+  #cards {
+    grid-template-columns: 33% 33% 33%;
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 770px){
+  #cards {
+    grid-template-columns: 33% 33% 33%;
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 500px){
+  main {
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+  }
+  #cards {
+    grid-template-columns: 33% 33% 33%;
+    width: 100%;
+
+  }
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+
+.front {
+  width: 90%;
+  object-fit: cover;
+}
