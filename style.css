@@ -9,13 +9,15 @@ body {
   background-size: cover;
 }
 
-.hide {
-  display: none;
+#mainGame {
+  margin: auto;
+  width: 100%;
 }
 
 h1 {
   text-align: center;
   color: wheat;
+  margin: 0 0 15px;
 }
 
 #displayNumOfCards {
@@ -24,41 +26,43 @@ h1 {
 
 main {
   display: grid;
-  grid-template-columns: 10% 90% 10%;
-  width: 90vw;
-  height: 90vh;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 
 #cards {
-  width: 55%;
-  margin: auto;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 157px 157px 157px 157px;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 22px;
+  justify-content: center;
 }
 
-@media screen and (max-width: 1100px){
-  #cards {
-    grid-template-columns: 33% 33% 33%;
-    width: 45%;
-  }
-}
-
-@media screen and (max-width: 770px){
-  #cards {
-    grid-template-columns: 33% 33% 33%;
-    width: 60%;
-  }
-}
-
-@media screen and (max-width: 500px){
+@media screen and (max-width: 1000px){
   main {
-    grid-template-columns: 100%;
-    grid-template-rows: 10% 90%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px;
   }
-  #cards {
-    grid-template-columns: 33% 33% 33%;
-    width: 100%;
+}
 
+@media screen and (max-width: 800px){
+  #cards {
+    grid-template-columns: 150px 150px 150px 150px;
+    margin: auto;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 650px){
+  #cards {
+    grid-template-columns: 135px 135px 135px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  #cards {
+    grid-template-columns: 100px 100px 100px;
+    gap: 5px;
   }
 }
 
@@ -66,6 +70,12 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
 img {
@@ -75,6 +85,28 @@ img {
 }
 
 .front {
-  width: 90%;
+  width: 120%;
+  height: auto;
   object-fit: cover;
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.back {
+  backface-visibility: hidden;
+}
+.flip {
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.rotateInner {
+  transform: rotateY(180deg);
+}
+
+.reset {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
