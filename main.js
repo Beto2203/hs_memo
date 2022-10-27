@@ -2,6 +2,20 @@ const cardUrl = 'https://art.hearthstonejson.com/v1/render/latest/enUS/256x/';
 
 const cards = document.getElementById('cards');
 
+function shuffle(deck) {
+  let index = deck.length;
+  let randomIndex;
+
+  while (index !== 0) {
+    randomIndex = Math.floor(Math.random() * index);
+    index--;
+
+    const swap = deck[index];
+    deck[index] = deck[randomIndex];
+    deck[randomIndex] = swap;
+  }
+}
+
 function startGame() {
   const deckSize = 12;
   const deck = [];
@@ -29,7 +43,7 @@ function startGame() {
     }
   }
 
-  deck.sort(() => 0.5 - Math.random());
+  shuffle(deck);
 
   const pairs = [];
   let debounceActive = false;
@@ -38,6 +52,7 @@ function startGame() {
 
     const card = {
       cardContainer: document.createElement('div'),
+      innerCard: document.createElement('div'),
       back: document.createElement('img'),
       front: document.createElement('img'),
       id: deck[i]
@@ -59,6 +74,7 @@ function startGame() {
         pairs.push(card);
         card.front.classList.remove('hide');
         card.back.classList.add('hide');
+        card.innerCard.classList.add('rotateInner');
       }
       if (pairs.length === 2 && !debounceActive) {
         debounceActive = true;
@@ -73,19 +89,26 @@ function startGame() {
           if (!(pairs[0].front.classList.contains('done') || pairs[1].front.classList.contains('done'))) {
             pairs[0].front.classList.toggle('hide');
             pairs[0].back.classList.toggle('hide');
+            pairs[0].innerCard.classList.toggle('rotateInner');
             pairs[1].front.classList.toggle('hide');
             pairs[1].back.classList.toggle('hide');
+            pairs[1].innerCard.classList.toggle('rotateInner');
+
           }
           pairs.pop();
           pairs.pop();
           debounceActive = false;
-        }, (debounceActive) ? 1000 : 100);
+        }, (debounceActive) ? 1300 : 100);
       }
     });
-    card.cardContainer.appendChild(card.front);
-    card.cardContainer.appendChild(card.back);
+    card.innerCard.appendChild(card.front);
+    card.innerCard.appendChild(card.back);
+    card.cardContainer.appendChild(card.innerCard);
 
-    card.cardContainer.classList.add('card');
+    card.cardContainer.classList.add('flip');
+    card.innerCard.classList.add('card');
+    card.back.classList.add('back');
+
 
     cards.appendChild(card.cardContainer);
   }
