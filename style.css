@@ -31,10 +31,16 @@ main {
 
 #cards {
   display: grid;
-  grid-template-columns: 157px 157px 157px 157px;
+  grid-template-columns: 260px 260px 260px 260px;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 22px;
   justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  #cards {
+    grid-template-columns: 157px 157px 157px 157px;
+  }
 }
 
 @media screen and (max-width: 1000px){
