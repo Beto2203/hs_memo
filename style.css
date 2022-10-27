@@ -31,7 +31,7 @@ main {
 
 #cards {
   display: grid;
-  grid-template-columns: 220px 220px 220px 220px;
+  grid-template-columns: 210px 210px 210px 210px;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 22px;
   justify-content: center;
