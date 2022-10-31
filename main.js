@@ -60,7 +60,6 @@ function startGame() {
 
     const fullUrl = `${cardUrl}AT_${card.id}.png`
 
-    card.front.classList.add('hide');
     card.front.classList.add('front');
     card.front.src = fullUrl;
     card.back.src = cardBack;
@@ -70,16 +69,14 @@ function startGame() {
 
     card.cardContainer.addEventListener('click', () => {
 
-      if (pairs.length < 2 && card.front.classList.contains('hide')) {
+      if (pairs.length < 2 && !card.front.classList.contains('done') && pairs[0] !== card) {
         pairs.push(card);
-        card.front.classList.remove('hide');
-        card.back.classList.add('hide');
         card.innerCard.classList.add('rotateInner');
       }
       if (pairs.length === 2 && !debounceActive) {
         debounceActive = true;
 
-        if (pairs[0].id === pairs[1].id) {
+        if (pairs[0].id === pairs[1].id && pairs[0] !== pairs[1]) {
           pairs[0].front.classList.add('done');
           pairs[1].front.classList.add('done');
           debounceActive = false;
@@ -87,13 +84,8 @@ function startGame() {
 
         setTimeout(() => {
           if (!(pairs[0].front.classList.contains('done') || pairs[1].front.classList.contains('done'))) {
-            pairs[0].front.classList.toggle('hide');
-            pairs[0].back.classList.toggle('hide');
             pairs[0].innerCard.classList.toggle('rotateInner');
-            pairs[1].front.classList.toggle('hide');
-            pairs[1].back.classList.toggle('hide');
             pairs[1].innerCard.classList.toggle('rotateInner');
-
           }
           pairs.pop();
           pairs.pop();
