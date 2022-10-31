@@ -1,5 +1,5 @@
 /* Box Model Hack */
-*{
+* {
   box-sizing: border-box;
   user-select: none;
 }
@@ -37,24 +37,25 @@ main {
   gap: 22px;
   justify-content: center;
   margin: auto;
+  position: relative;
 }
 
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 50px;
   }
 }
 
-@media screen and (max-width: 850px){
+@media screen and (max-width: 850px) {
   #cards {
     width: 600px;
     gap: 10px;
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   #cards {
     grid-template-columns: 1fr 1fr 1fr;
     width: 400px;
@@ -111,4 +112,38 @@ img {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+#menu {
+  display: grid;
+}
+
+#restart {
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  font-family: monospace;
+  font-size: 28px;
+  cursor: pointer;
+  align-self: center;
+  text-shadow: 0 0 4px black;
+  justify-self: center;
+  background:
+    radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent),
+    radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
+    linear-gradient(#A8B1BB 8px, transparent 8px) 0 -4px,
+    linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
+  background-color: slategray;
+  background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
+}
+
+#restart:hover {
+  background-color: #fdaf15;
+  color: #fdaf15;
 }
